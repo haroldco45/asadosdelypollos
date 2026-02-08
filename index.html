@@ -10,36 +10,29 @@
         body { font-family: 'Roboto', sans-serif; margin: 0; background-color: var(--gris-fondo); display: flex; justify-content: center; }
         .app-container { width: 100%; max-width: 450px; background: white; min-height: 100vh; padding-bottom: 50px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
         
-        /* Cabecera */
         .info-header { background: #fff; padding: 10px; text-align: center; font-size: 11px; border-bottom: 1px solid #ddd; }
         header { background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=500'); background-size: cover; height: 140px; display: flex; justify-content: center; align-items: center; }
         .logo { max-width: 180px; filter: drop-shadow(2px 2px 4px #000); }
 
-        /* Categorías */
         .categories { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; padding: 15px; }
         .cat-btn { padding: 10px; border: none; border-radius: 5px; color: white; font-weight: bold; font-size: 10px; cursor: pointer; text-transform: uppercase; }
         .cat-btn.active { background-color: var(--rojo); }
         .cat-btn.inactive { background-color: var(--verde-boton); }
 
-        /* Productos */
         .products-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; padding: 0 15px; }
-        .product-card { background-color: var(--rojo); color: white; padding: 12px; border-radius: 10px; text-align: center; cursor: pointer; transition: 0.2s; }
-        .product-card:active { transform: scale(0.98); }
+        .product-card { background-color: var(--rojo); color: white; padding: 12px; border-radius: 10px; text-align: center; cursor: pointer; }
         .product-name { font-size: 10px; font-weight: bold; height: 32px; display: flex; align-items: center; justify-content: center; line-height: 1.1; }
         .product-price { font-size: 14px; display: block; margin-top: 5px; font-weight: bold; }
 
-        /* Formularios */
         .form-section { padding: 15px; background: #fff; border-top: 5px solid var(--gris-fondo); }
         .input-group { margin-bottom: 12px; }
         .input-group label { display: block; font-size: 12px; margin-bottom: 4px; font-weight: bold; }
-        .input-group input, .input-group select, .input-group textarea { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; font-family: inherit; }
+        .input-group input, .input-group select, .input-group textarea { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; }
         
-        /* Carrito / Factura */
         .cart-section { padding: 15px; background: #fff; border-top: 5px solid var(--gris-fondo); }
         .cart-item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; border-bottom: 1px dashed #eee; padding-bottom: 8px; }
-        
         .qty-controls { display: flex; align-items: center; gap: 8px; }
-        .qty-box { width: 30px; text-align: center; border: 1px solid #ccc; border-radius: 4px; font-weight: bold; font-size: 14px; }
+        .qty-box { width: 30px; text-align: center; border: 1px solid #ccc; border-radius: 4px; font-weight: bold; }
         .qty-btn { background: var(--verde-boton); border: none; color: white; width: 28px; height: 28px; border-radius: 4px; cursor: pointer; font-weight: bold; }
 
         .total-box { background: #f9f9f9; padding: 15px; border-radius: 8px; margin-top: 10px; text-align: right; }
@@ -59,19 +52,19 @@
         <button id="btn-ASADO" class="cat-btn inactive" onclick="cambiarCategoria('ASADO')">Asado</button>
         <button id="btn-BANDEJAS" class="cat-btn inactive" onclick="cambiarCategoria('BANDEJAS')">Bandejas</button>
         <button id="btn-BEBIDAS" class="cat-btn inactive" onclick="cambiarCategoria('BEBIDAS')">Bebidas</button>
-        <button id="btn-JUGOS" class="cat-btn inactive" onclick="cambiarCategoria('JUGOS')">Jugos</button>
+        <button id="btn-JUGOS" class="cat-btn inactive" onclick="cambiarCategoria('JUGOS')">Jugos Naturales</button>
         <button id="btn-SOPAS" class="cat-btn inactive" onclick="cambiarCategoria('SOPAS')">Sopas</button>
     </div>
 
-    <div id="categoria-actual" style="padding: 10px 15px; font-weight: bold; text-transform: uppercase; color: #444;">Categoría: Broaster</div>
+    <div id="categoria-actual" style="padding: 10px 15px; font-weight: bold; text-transform: uppercase;">Categoría: Broaster</div>
     <div class="products-grid" id="menu-container"></div>
 
     <div class="form-section">
         <strong style="font-size: 14px; color: var(--rojo);">DATOS DE ENTREGA</strong>
         <div style="margin-top: 10px;">
-            <div class="input-group"><label>Nombre y Apellido:</label><input type="text" id="nombre"></div>
-            <div class="input-group"><label>Dirección (Barrio/Apto):</label><input type="text" id="direccion"></div>
-            <div class="input-group"><label>Teléfono Celular:</label><input type="tel" id="tel-cliente"></div>
+            <div class="input-group"><label>Nombre:</label><input type="text" id="nombre"></div>
+            <div class="input-group"><label>Dirección:</label><input type="text" id="direccion"></div>
+            <div class="input-group"><label>Celular:</label><input type="tel" id="tel-cliente"></div>
             <div class="input-group">
                 <label>Forma de Pago:</label>
                 <select id="forma-pago">
@@ -80,28 +73,20 @@
                     <option value="Datáfono">Datáfono</option>
                 </select>
             </div>
-            <div class="input-group">
-                <label>Observaciones (OBS):</label>
-                <textarea id="observaciones" rows="2" placeholder="Ej: Jugo de Mora en leche, cambio de $50k..."></textarea>
-            </div>
+            <div class="input-group"><label>Observaciones (OBS):</label><textarea id="observaciones" rows="2"></textarea></div>
         </div>
     </div>
 
     <div class="cart-section">
         <strong style="font-size: 14px;">RESUMEN DE FACTURA</strong>
-        <div id="cart-list" style="margin-top: 10px;"></div>
+        <div id="cart-list"></div>
         <div id="resumen-valores" class="total-box" style="display: none;">
-            <div style="font-weight: bold; font-size: 20px; color: var(--rojo);">
-                TOTAL A PAGAR: <span id="total-val">$0</span>
-            </div>
-            <button id="send-btn" class="btn-whatsapp" onclick="enviarPedido()">GENERAR PEDIDO WHATSAPP</button>
+            <div style="font-weight: bold; font-size: 20px; color: var(--rojo);">TOTAL: <span id="total-val">$0</span></div>
+            <button id="send-btn" class="btn-whatsapp" onclick="enviarPedido()">PEDIR POR WHATSAPP</button>
         </div>
     </div>
 
-    <footer>
-        ¡Gracias por elegir Asados DelyPollos!<br><br>
-        App desarrollada por <strong>VIBRAS POSITIVAS</strong>
-    </footer>
+    <footer>App desarrollada por <strong>VIBRAS POSITIVAS</strong></footer>
 </div>
 
 <script>
@@ -161,11 +146,11 @@
             { id: 44, nombre: "LIMONADA NATURAL", precio: 5000 },
             { id: 45, nombre: "LIMONADA CEREZADA", precio: 7000 },
             { id: 46, nombre: "LIMONADA DE COCO", precio: 10000 },
-            { id: 47, nombre: "MORA", precio: 0 },
-            { id: 48, nombre: "FRESA", precio: 0 },
-            { id: 49, nombre: "GUANABANA", precio: 0 },
-            { id: 50, nombre: "LULO", precio: 0 },
-            { id: 51, nombre: "MANGO", precio: 0 }
+            { id: 47, nombre: "SABOR: MORA", precio: 0 },
+            { id: 48, nombre: "SABOR: FRESA", precio: 0 },
+            { id: 49, nombre: "SABOR: GUANABANA", precio: 0 },
+            { id: 50, nombre: "SABOR: LULO", precio: 0 },
+            { id: 51, nombre: "SABOR: MANGO", precio: 0 }
         ],
         'SOPAS': []
     };
@@ -174,8 +159,7 @@
     let catActual = 'BROASTER';
 
     window.onload = () => {
-        const fields = ['nombre', 'direccion', 'tel-cliente'];
-        fields.forEach(f => { if(localStorage.getItem(f)) document.getElementById(f).value = localStorage.getItem(f); });
+        ['nombre', 'direccion', 'tel-cliente'].forEach(f => { if(localStorage.getItem(f)) document.getElementById(f).value = localStorage.getItem(f); });
         renderMenu();
     };
 
@@ -190,10 +174,7 @@
 
     function renderMenu() {
         const container = document.getElementById('menu-container');
-        if (menuData[catActual].length === 0) {
-            container.innerHTML = '<p style="padding: 20px; color: #999;">Próximamente...</p>';
-            return;
-        }
+        if (menuData[catActual].length === 0) { container.innerHTML = '<p style="padding: 20px;">Próximamente...</p>'; return; }
         container.innerHTML = menuData[catActual].map(p => `
             <div class="product-card" onclick="agregarAlCarrito(${p.id})">
                 <div class="product-name">${p.nombre}</div>
@@ -204,39 +185,27 @@
 
     function agregarAlCarrito(id) {
         let prod;
-        for (let cat in menuData) {
-            const found = menuData[cat].find(p => p.id === id);
-            if (found) { prod = found; break; }
-        }
+        for (let cat in menuData) { const found = menuData[cat].find(p => p.id === id); if (found) { prod = found; break; } }
         const item = carrito.find(i => i.id === id);
-        if (item) item.cantidad++;
-        else carrito.push({ ...prod, cantidad: 1 });
+        if (item) item.cantidad++; else carrito.push({ ...prod, cantidad: 1 });
         actualizarUI();
     }
 
     function modQty(id, delta) {
         const item = carrito.find(i => i.id === id);
-        if (item) {
-            item.cantidad += delta;
-            if (item.cantidad <= 0) carrito = carrito.filter(i => i.id !== id);
-        }
+        if (item) { item.cantidad += delta; if (item.cantidad <= 0) carrito = carrito.filter(i => i.id !== id); }
         actualizarUI();
     }
 
     function actualizarUI() {
         const lista = document.getElementById('cart-list');
         const resumen = document.getElementById('resumen-valores');
-        if (carrito.length === 0) {
-            lista.innerHTML = '<p style="color: #999; font-size: 13px;">Selecciona productos para tu pedido.</p>';
-            resumen.style.display = 'none';
-            return;
-        }
+        if (carrito.length === 0) { lista.innerHTML = '<p style="color:#999; font-size:13px;">Selecciona productos.</p>'; resumen.style.display = 'none'; return; }
         resumen.style.display = 'block';
         document.getElementById('send-btn').style.display = 'block';
         let total = 0;
         lista.innerHTML = carrito.map(item => {
-            let sub = item.precio * item.cantidad;
-            total += sub;
+            total += (item.precio * item.cantidad);
             return `
                 <div class="cart-item">
                     <div><strong>${item.nombre}</strong><br><small>$${item.precio.toLocaleString()} c/u</small></div>
@@ -257,28 +226,15 @@
         const pago = document.getElementById('forma-pago').value;
         const obs = document.getElementById('observaciones').value;
 
-        if(!n || !d || !t) return alert("Por favor, completa tus datos de entrega.");
+        if(!n || !d || !t) return alert("Completa tus datos.");
+        localStorage.setItem('nombre', n); localStorage.setItem('direccion', d); localStorage.setItem('tel-cliente', t);
 
-        localStorage.setItem('nombre', n);
-        localStorage.setItem('direccion', d);
-        localStorage.setItem('tel-cliente', t);
-
-        let msg = `*ASADOS DELYPOLLOS*\nFrente al Estadio | 3117700431\n`;
-        msg += `--------------------------------\n`;
-        msg += `*CLIENTE:* ${n}\n*TEL:* ${t}\n*DIR:* ${d}\n`;
-        msg += `*PAGO:* ${pago}\n`;
+        let msg = `*ASADOS DELYPOLLOS*\nFrente al Estadio | 3117700431\n--------------------------------\n*CLIENTE:* ${n}\n*TEL:* ${t}\n*DIR:* ${d}\n*PAGO:* ${pago}\n`;
         if(obs) msg += `*OBS:* ${obs}\n`;
-        msg += `--------------------------------\n*DETALLE DE FACTURA:*\n`;
-        
+        msg += `--------------------------------\n*FACTURA:*\n`;
         let total = 0;
-        carrito.forEach(i => {
-            let sub = i.precio * i.cantidad;
-            total += sub;
-            msg += `${i.cantidad}x ${i.nombre}\n   ($${i.precio.toLocaleString()} c/u) = $${sub.toLocaleString()}\n`;
-        });
-
-        msg += `--------------------------------\n*TOTAL A PAGAR: $${total.toLocaleString()}*\n\n`;
-        msg += `¡Muchas gracias por su compra!\n_App desarrollada por VIBRAS POSITIVAS_`;
+        carrito.forEach(i => { total += (i.precio * i.cantidad); msg += `${i.cantidad}x ${i.nombre} ($${(i.precio*i.cantidad).toLocaleString()})\n`; });
+        msg += `--------------------------------\n*TOTAL: $${total.toLocaleString()}*\n\n¡Gracias por su compra!\n_App por VIBRAS POSITIVAS_`;
 
         window.open(`https://wa.me/573117700431?text=${encodeURIComponent(msg)}`);
     }
