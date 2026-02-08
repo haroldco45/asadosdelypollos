@@ -53,6 +53,7 @@
         <button id="btn-BANDEJAS" class="cat-btn inactive" onclick="cambiarCategoria('BANDEJAS')">Bandejas</button>
         <button id="btn-BEBIDAS" class="cat-btn inactive" onclick="cambiarCategoria('BEBIDAS')">Bebidas</button>
         <button id="btn-JUGOS" class="cat-btn inactive" onclick="cambiarCategoria('JUGOS')">Jugos</button>
+        <button id="btn-SOPAS" class="cat-btn inactive" onclick="cambiarCategoria('SOPAS')">Sopas</button>
         <button id="btn-ADICIONES" class="cat-btn inactive" onclick="cambiarCategoria('ADICIONES')">Adiciones</button>
     </div>
 
@@ -73,7 +74,7 @@
                     <option value="Datáfono">Datáfono</option>
                 </select>
             </div>
-            <div class="input-group"><label>Observaciones (OBS):</label><textarea id="observaciones" rows="2" placeholder="Ej: Papas bien crocantes..."></textarea></div>
+            <div class="input-group"><label>Observaciones (OBS):</label><textarea id="observaciones" rows="2" placeholder="Ej: Sopa sin cebolla..."></textarea></div>
         </div>
     </div>
 
@@ -116,8 +117,7 @@
             { id: 23, nombre: "BANDEJA TILAPIA", precio: 30000 }, { id: 24, nombre: "BANDEJA CACHAMA", precio: 25000 },
             { id: 25, nombre: "BANDEJA BOCACHICO SUDADO", precio: 25000 }, { id: 26, nombre: "BANDEJA BOCACHICO FRITO", precio: 25000 },
             { id: 27, nombre: "BANDEJA POLLO BROASTER 1P", precio: 20000 }, { id: 28, nombre: "BANDEJA POLLO BROASTER 2P", precio: 25000 },
-            { id: 29, nombre: "BANDEJA POLLO ASADO", precio: 25000 }, { id: 30, nombre: "SOPA DE RES", precio: 0 },
-            { id: 31, nombre: "SOPA POLLO", precio: 0 }, { id: 32, nombre: "SOPA DE PASTAS", precio: 0 }
+            { id: 29, nombre: "BANDEJA POLLO ASADO", precio: 25000 }
         ],
         'BEBIDAS': [
             { id: 33, nombre: "COCACOLA 1.5", precio: 10000 }, { id: 34, nombre: "GASEOSA X400", precio: 5000 },
@@ -135,6 +135,14 @@
             { id: 52, nombre: "LIMONADA", precio: 8000 }, { id: 53, nombre: "TOMATE DE ARBOL", precio: 10000 },
             { id: 54, nombre: "JARRA DE JUGO", precio: 25000 }, { id: 55, nombre: "MORA", precio: 10000 },
             { id: 56, nombre: "MICHELADA CEREZADA", precio: 12000 }
+        ],
+        'SOPAS': [
+            { id: 72, nombre: "SOPA DE RES", precio: 8000 }, { id: 73, nombre: "SOPA DE POLLO", precio: 8000 },
+            { id: 74, nombre: "SOPA DE PASTAS", precio: 8000 }, { id: 75, nombre: "SOPA DE FRIJOLES", precio: 8000 },
+            { id: 76, nombre: "LENTEJAS", precio: 8000 }, { id: 77, nombre: "SOPA DE GALLINA", precio: 10000 },
+            { id: 78, nombre: "MONDONGO COMPLETO", precio: 15000 }, { id: 79, nombre: "SOPA DE PESCADO", precio: 8000 },
+            { id: 80, nombre: "SOPA VERDURAS", precio: 8000 }, { id: 81, nombre: "SOPA RES SALADA", precio: 8000 },
+            { id: 82, nombre: "SOPA MONDONGO", precio: 10000 }, { id: 83, nombre: "GARBANZOS", precio: 8000 }
         ],
         'ADICIONES': [
             { id: 57, nombre: "PAPAS A LA FRANCESA", precio: 7000 }, { id: 58, nombre: "ARROZ", precio: 3000 },
