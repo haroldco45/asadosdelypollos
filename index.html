@@ -3,29 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Asados DelyPollos - Broaster</title>
+    <title>Asados DelyPollos - Menú</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        :root { --rojo: #d32f2f; --verde: #25d366; --verde-oscuro: #128C7E; --gris-fondo: #f4f4f4; }
+        :root { --rojo: #d32f2f; --verde: #25d366; --verde-boton: #4caf50; --gris-fondo: #f4f4f4; }
         body { font-family: 'Roboto', sans-serif; margin: 0; background-color: var(--gris-fondo); display: flex; justify-content: center; }
         .app-container { width: 100%; max-width: 450px; background: white; min-height: 100vh; padding-bottom: 120px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
         
-        /* Encabezado */
+        /* Header */
         .info-header { background: #fff; padding: 10px; text-align: center; font-size: 11px; border-bottom: 1px solid #ddd; }
-        header { background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?q=80&w=500'); background-size: cover; height: 140px; display: flex; justify-content: center; align-items: center; }
+        header { background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=500'); background-size: cover; height: 140px; display: flex; justify-content: center; align-items: center; }
         .logo { max-width: 180px; filter: drop-shadow(2px 2px 4px #000); }
 
         /* Categorías */
         .categories { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; padding: 15px; }
-        .cat-btn { padding: 10px; border: none; border-radius: 5px; color: white; font-weight: bold; font-size: 10px; cursor: pointer; text-transform: uppercase; }
-        .active { background-color: var(--rojo); }
-        .inactive { background-color: #4caf50; }
+        .cat-btn { padding: 10px; border: none; border-radius: 5px; color: white; font-weight: bold; font-size: 10px; cursor: pointer; text-transform: uppercase; transition: 0.3s; }
+        .cat-btn.active { background-color: var(--rojo); }
+        .cat-btn.inactive { background-color: var(--verde-boton); }
 
         /* Grid de Productos */
-        .products-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; padding: 0 15px; }
+        .products-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; padding: 0 15px; min-height: 200px; }
         .product-card { background-color: var(--rojo); color: white; padding: 12px; border-radius: 10px; text-align: center; cursor: pointer; transition: 0.2s; }
         .product-card:active { transform: scale(0.98); }
-        .product-name { font-size: 11px; font-weight: bold; height: 30px; line-height: 1.2; }
+        .product-name { font-size: 11px; font-weight: bold; height: 30px; line-height: 1.2; display: flex; align-items: center; justify-content: center; }
         .product-price { font-size: 15px; display: block; margin-top: 5px; font-weight: bold; }
 
         /* Formulario Cliente */
@@ -33,7 +33,6 @@
         .input-group { margin-bottom: 10px; }
         .input-group label { display: block; font-size: 12px; margin-bottom: 3px; font-weight: bold; }
         .input-group input { width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; }
-        .edit-msg { font-size: 10px; color: var(--rojo); cursor: pointer; text-decoration: underline; }
 
         /* Carrito / Factura */
         .cart-section { padding: 15px; background: #fff; border-top: 5px solid var(--gris-fondo); }
@@ -43,14 +42,11 @@
         .item-info span { font-size: 11px; color: #666; }
         
         .qty-controls { display: flex; align-items: center; gap: 8px; }
-        .qty-box { width: 30px; text-align: center; border: 1px solid #ccc; border-radius: 4px; font-weight: bold; background: #f9f9f9; }
-        .qty-btn { background: #4caf50; border: none; color: white; width: 24px; height: 24px; border-radius: 4px; cursor: pointer; font-weight: bold; }
+        .qty-box { width: 30px; text-align: center; border: 1px solid #ccc; border-radius: 4px; font-weight: bold; }
+        .qty-btn { background: var(--verde-boton); border: none; color: white; width: 24px; height: 24px; border-radius: 4px; cursor: pointer; }
 
         .total-box { background: #f9f9f9; padding: 15px; border-radius: 8px; margin-top: 10px; }
-        .total-row { display: flex; justify-content: space-between; margin-bottom: 5px; font-size: 14px; }
-        
         .btn-whatsapp { width: 100%; padding: 15px; background-color: var(--verde); color: white; border: none; border-radius: 10px; font-weight: bold; font-size: 16px; cursor: pointer; margin-top: 15px; display: none; }
-        .btn-whatsapp:hover { background-color: var(--verde-oscuro); }
         
         footer { text-align: center; padding: 20px; font-size: 12px; color: #888; }
     </style>
@@ -61,48 +57,32 @@
     <div class="info-header">📍 Frente al estadio de fútbol, Caucasia | 📞 3117700431</div>
     <header><img src="ASADOS-DELYPOLLOS.PNG" alt="DelyPollos" class="logo"></header>
 
-    <div class="categories">
-        <button class="cat-btn active">Broaster</button>
-        <button class="cat-btn inactive">Asado</button>
+    <div class="categories" id="category-tabs">
+        <button class="cat-btn active" onclick="cambiarCategoria('BROASTER', this)">Broaster</button>
+        <button class="cat-btn inactive" onclick="cambiarCategoria('ASADO', this)">Asado</button>
         <button class="cat-btn inactive">Bandejas</button>
         <button class="cat-btn inactive">Bebidas</button>
         <button class="cat-btn inactive">Sopas</button>
         <button class="cat-btn inactive">Postres</button>
     </div>
 
-    <div style="padding: 10px 15px; font-weight: bold;">CATEGORÍA: BROASTER</div>
-    <div class="products-grid" id="menu-broaster"></div>
+    <div id="categoria-actual" style="padding: 10px 15px; font-weight: bold; text-transform: uppercase;">CATEGORÍA: BROASTER</div>
+    <div class="products-grid" id="menu-container"></div>
 
     <div class="cliente-data">
-        <div style="display: flex; justify-content: space-between;">
-            <strong style="font-size: 14px;">DATOS DE ENTREGA</strong>
-            <span class="edit-msg" onclick="habilitarEdicion()">Editar datos</span>
-        </div>
-        <div id="form-cliente">
-            <div class="input-group">
-                <label>Nombre Completo:</label>
-                <input type="text" id="nombre" placeholder="Ej: Juan Perez">
-            </div>
-            <div class="input-group">
-                <label>Dirección exacta:</label>
-                <input type="text" id="direccion" placeholder="Ej: Carrera 5 #10-20">
-            </div>
-            <div class="input-group">
-                <label>Celular de contacto:</label>
-                <input type="tel" id="tel-cliente" placeholder="Ej: 3101234567">
-            </div>
+        <strong style="font-size: 14px;">DATOS DE ENTREGA</strong>
+        <div id="form-cliente" style="margin-top: 10px;">
+            <div class="input-group"><label>Nombre:</label><input type="text" id="nombre"></div>
+            <div class="input-group"><label>Dirección:</label><input type="text" id="direccion"></div>
+            <div class="input-group"><label>Celular:</label><input type="tel" id="tel-cliente"></div>
         </div>
     </div>
 
     <div class="cart-section">
         <strong style="font-size: 14px;">RESUMEN DE PEDIDO</strong>
-        <div id="cart-list" style="margin-top: 10px;">
-            <p style="color: #999; font-size: 13px;">No hay productos seleccionados.</p>
-        </div>
-        
+        <div id="cart-list" style="margin-top: 10px;"></div>
         <div id="resumen-valores" class="total-box" style="display: none;">
-            <div class="total-row"><span>Subtotal:</span> <span id="subtotal-val">$0</span></div>
-            <div class="total-row" style="color: var(--rojo); font-weight: bold; font-size: 18px;">
+            <div style="display: flex; justify-content: space-between; font-weight: bold; font-size: 18px; color: var(--rojo);">
                 <span>TOTAL:</span> <span id="total-val">$0</span>
             </div>
             <button id="send-btn" class="btn-whatsapp" onclick="enviarPedido()">PEDIR POR WHATSAPP</button>
@@ -113,20 +93,28 @@
 </div>
 
 <script>
-    const productos = [
-        { id: 1, nombre: "POLLO ENTERO BROASTER", precio: 48000 },
-        { id: 2, nombre: "1/2 POLLO BROASTER", precio: 24000 },
-        { id: 3, nombre: "1/4 PERNIL BROASTER", precio: 13000 },
-        { id: 4, nombre: "1/4 PECHUGA BROASTER", precio: 15000 },
-        { id: 5, nombre: "PECHUGA BROASTER", precio: 12000 },
-        { id: 6, nombre: "ALA BROASTER", precio: 7000 },
-        { id: 7, nombre: "CONTRAMUSLO BROASTER", precio: 7000 },
-        { id: 8, nombre: "MUSLO BROASTER", precio: 6000 }
-    ];
+    const menuData = {
+        'BROASTER': [
+            { id: 1, nombre: "POLLO ENTERO BROASTER", precio: 48000 },
+            { id: 2, nombre: "1/2 POLLO BROASTER", precio: 24000 },
+            { id: 3, nombre: "1/4 PERNIL BROASTER", precio: 13000 },
+            { id: 4, nombre: "1/4 PECHUGA BROASTER", precio: 15000 },
+            { id: 5, nombre: "PECHUGA BROASTER", precio: 12000 },
+            { id: 6, nombre: "ALA BROASTER", precio: 7000 },
+            { id: 7, nombre: "CONTRAMUSLO BROASTER", precio: 7000 },
+            { id: 8, nombre: "MUSLO BROASTER", precio: 6000 }
+        ],
+        'ASADO': [
+            { id: 9, nombre: "POLLO ENTERO ASADO", precio: 48000 },
+            { id: 10, nombre: "1/2 POLLO ASADO", precio: 24000 },
+            { id: 11, nombre: "1/4 PERNIL ASADO", precio: 13000 },
+            { id: 12, nombre: "1/4 PECHUGA ASADO", precio: 15000 }
+        ]
+    };
 
     let carrito = [];
+    let catActual = 'BROASTER';
 
-    // Cargar datos guardados
     window.onload = () => {
         if(localStorage.getItem('nombre')) {
             document.getElementById('nombre').value = localStorage.getItem('nombre');
@@ -134,10 +122,24 @@
             document.getElementById('tel-cliente').value = localStorage.getItem('tel-cliente');
         }
         renderMenu();
+        actualizarUI();
     };
 
+    function cambiarCategoria(cat, btn) {
+        catActual = cat;
+        document.querySelectorAll('.cat-btn').forEach(b => {
+            b.classList.remove('active');
+            b.classList.add('inactive');
+        });
+        btn.classList.add('active');
+        btn.classList.remove('inactive');
+        document.getElementById('categoria-actual').innerText = `CATEGORÍA: ${cat}`;
+        renderMenu();
+    }
+
     function renderMenu() {
-        document.getElementById('menu-broaster').innerHTML = productos.map(p => `
+        const container = document.getElementById('menu-container');
+        container.innerHTML = menuData[catActual].map(p => `
             <div class="product-card" onclick="agregarAlCarrito(${p.id})">
                 <div class="product-name">${p.nombre}</div>
                 <span class="product-price">$${p.precio.toLocaleString()}</span>
@@ -146,9 +148,16 @@
     }
 
     function agregarAlCarrito(id) {
+        // Buscar en todas las categorías
+        let prod;
+        for (let cat in menuData) {
+            const found = menuData[cat].find(p => p.id === id);
+            if (found) { prod = found; break; }
+        }
+
         const item = carrito.find(i => i.id === id);
         if (item) item.cantidad++;
-        else carrito.push({ ...productos.find(p => p.id === id), cantidad: 1 });
+        else carrito.push({ ...prod, cantidad: 1 });
         actualizarUI();
     }
 
@@ -167,7 +176,7 @@
         const btn = document.getElementById('send-btn');
         
         if (carrito.length === 0) {
-            lista.innerHTML = '<p style="color: #999;">No hay productos seleccionados.</p>';
+            lista.innerHTML = '<p style="color: #999;">Selecciona productos para tu pedido.</p>';
             resumen.style.display = 'none';
             return;
         }
@@ -182,7 +191,7 @@
                 <div class="cart-item">
                     <div class="item-info">
                         <div>${item.nombre}</div>
-                        <span>Precio Unit: $${item.precio.toLocaleString()}</span>
+                        <span>$${item.precio.toLocaleString()} c/u</span>
                     </div>
                     <div class="qty-controls">
                         <button class="qty-btn" onclick="modQty(${item.id}, -1)">-</button>
@@ -192,7 +201,6 @@
                 </div>`;
         }).join('');
 
-        document.getElementById('subtotal-val').innerText = `$${total.toLocaleString()}`;
         document.getElementById('total-val').innerText = `$${total.toLocaleString()}`;
     }
 
@@ -201,21 +209,17 @@
         const d = document.getElementById('direccion').value;
         const t = document.getElementById('tel-cliente').value;
 
-        if(!n || !d || !t) return alert("Por favor completa tus datos de entrega.");
+        if(!n || !d || !t) return alert("Por favor completa tus datos.");
 
-        // Guardar para el futuro
         localStorage.setItem('nombre', n);
         localStorage.setItem('direccion', d);
         localStorage.setItem('tel-cliente', t);
 
         let msg = `*ASADOS DELYPOLLOS*\n`;
-        msg += `Frente al Estadio, Caucasia | 3117700431\n`;
+        msg += `Frente al Estadio | 3117700431\n`;
         msg += `--------------------------------\n`;
-        msg += `*CLIENTE:* ${n}\n`;
-        msg += `*TEL:* ${t}\n`;
-        msg += `*DIRECCIÓN:* ${d}\n`;
+        msg += `*CLIENTE:* ${n}\n*TEL:* ${t}\n*DIR:* ${d}\n`;
         msg += `--------------------------------\n`;
-        msg += `*DETALLE DEL PEDIDO:*\n`;
         
         let total = 0;
         carrito.forEach(i => {
@@ -229,10 +233,6 @@
         msg += `*TOTAL A PAGAR: $${total.toLocaleString()}*`;
 
         window.open(`https://wa.me/573117700431?text=${encodeURIComponent(msg)}`);
-    }
-
-    function habilitarEdicion() {
-        document.getElementById('nombre').focus();
     }
 </script>
 </body>
