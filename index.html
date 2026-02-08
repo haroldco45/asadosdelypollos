@@ -1,1 +1,224 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asados DelyPollos - Pedidos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --rojo-principal: #d32f2f;
+            --verde-principal: #4caf50;
+            --gris-claro: #f4f4f4;
+            --blanco: #ffffff;
+            --negro-suave: #333;
+        }
 
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--gris-claro);
+            display: flex;
+            justify-content: center;
+        }
+
+        .app-container {
+            width: 100%;
+            max-width: 450px;
+            background-color: var(--blanco);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+
+        header {
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1555939594-58d7cb561ad1?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 160px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+        }
+
+        .logo {
+            max-width: 220px;
+            filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.5));
+        }
+
+        /* Información de Contacto Superior */
+        .info-contacto {
+            background-color: #fff;
+            padding: 10px 15px;
+            text-align: center;
+            font-size: 13px;
+            border-bottom: 1px solid #eee;
+            color: var(--negro-suave);
+        }
+
+        .search-container { padding: 10px 15px; }
+        .search-bar {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 25px;
+            box-sizing: border-box;
+            background-color: #f9f9f9;
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            padding: 5px 15px;
+        }
+
+        .category-btn {
+            padding: 10px 5px;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+            font-size: 11px;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+
+        .btn-red { background-color: var(--rojo-principal); }
+        .btn-green { background-color: var(--verde-principal); }
+
+        .section-title {
+            padding: 15px 15px 5px;
+            font-size: 18px;
+            font-weight: bold;
+            color: var(--negro-suave);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            padding: 15px;
+            margin-bottom: 120px;
+        }
+
+        /* Enlace de WhatsApp para productos */
+        .product-link { text-decoration: none; }
+
+        .product-card {
+            background-color: var(--rojo-principal);
+            color: white;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            transition: transform 0.2s;
+        }
+
+        .product-card:active { transform: scale(0.95); }
+
+        .product-name { font-size: 13px; font-weight: bold; height: 32px; overflow: hidden; }
+        .product-price { font-size: 16px; margin-top: 8px; display: block; }
+
+        /* Pie de página y Créditos */
+        footer {
+            background: #f1f1f1;
+            padding: 15px;
+            text-align: center;
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 70px;
+        }
+
+        .vibras-logo { font-weight: bold; color: var(--verde-principal); }
+
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            max-width: 450px;
+            background: white;
+            display: flex;
+            justify-content: space-around;
+            padding: 12px 0;
+            border-top: 2px solid var(--gris-claro);
+            z-index: 100;
+        }
+
+        .nav-item { text-align: center; color: #888; text-decoration: none; font-size: 12px; }
+    </style>
+</head>
+<body>
+
+<div class="app-container">
+    <div class="info-contacto">
+        📍 Frente al estadio de fútbol, Caucasia, Antioquia<br>
+        📞 3117700431
+    </div>
+
+    <header>
+        <img src="ASADOS-DELYPOLLOS.PNG" alt="Logo DelyPollos" class="logo">
+    </header>
+
+    <div class="search-container">
+        <input type="text" class="search-bar" placeholder="¿Qué deseas pedir hoy?">
+    </div>
+
+    <div class="categories-grid">
+        <button class="category-btn btn-red">Desayunos</button>
+        <button class="category-btn btn-green">Asados</button>
+        <button class="category-btn btn-green">Bandejas</button>
+        <button class="category-btn btn-green">Bebidas</button>
+        <button class="category-btn btn-green">Sopas</button>
+        <button class="category-btn btn-green">Adiciones</button>
+    </div>
+
+    <div class="section-title">Nuestros Desayunos</div>
+
+    <div class="products-grid">
+        <a href="https://wa.me/573117700431?text=Hola!%20Quiero%20pedir%20un%20Caldo%20de%20Costilla" class="product-link">
+            <div class="product-card">
+                <div class="product-name">CALDO DE COSTILLA</div>
+                <span class="product-price">$12.000</span>
+            </div>
+        </a>
+
+        <a href="https://wa.me/573117700431?text=Hola!%20Quiero%20pedir%20un%20Desayuno%20Tradicional" class="product-link">
+            <div class="product-card">
+                <div class="product-name">DESAYUNO TRADICIONAL</div>
+                <span class="product-price">$10.000</span>
+            </div>
+        </a>
+
+        <a href="https://wa.me/573117700431?text=Hola!%20Quiero%20pedir%20unos%20Huevos%20al%20Gusto" class="product-link">
+            <div class="product-card">
+                <div class="product-name">HUEVOS AL GUSTO</div>
+                <span class="product-price">$8.000</span>
+            </div>
+        </a>
+
+        <a href="https://wa.me/573117700431?text=Hola!%20Quiero%20pedir%20un%20Tamal%20Tolimense" class="product-link">
+            <div class="product-card">
+                <div class="product-name">TAMAL TOLIMENSE</div>
+                <span class="product-price">$14.000</span>
+            </div>
+        </a>
+    </div>
+
+    <footer>
+        Desarrollado por <span class="vibras-logo">VIBRAS POSITIVAS</span><br>
+        Caucasia, Antioquia © 2026
+    </footer>
+
+    <nav class="bottom-nav">
+        <a href="#" class="nav-item">🏠<br>Inicio</a>
+        <a href="tel:3117700431" class="nav-item">📞<br>Llamar</a>
+        <a href="https://wa.me/573117700431" class="nav-item">💬<br>WhatsApp</a>
+    </nav>
+</div>
+
+</body>
+</html>
