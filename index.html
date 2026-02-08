@@ -59,8 +59,8 @@
         <button id="btn-ASADO" class="cat-btn inactive" onclick="cambiarCategoria('ASADO')">Asado</button>
         <button id="btn-BANDEJAS" class="cat-btn inactive" onclick="cambiarCategoria('BANDEJAS')">Bandejas</button>
         <button id="btn-BEBIDAS" class="cat-btn inactive" onclick="cambiarCategoria('BEBIDAS')">Bebidas</button>
+        <button id="btn-JUGOS" class="cat-btn inactive" onclick="cambiarCategoria('JUGOS')">Jugos</button>
         <button id="btn-SOPAS" class="cat-btn inactive" onclick="cambiarCategoria('SOPAS')">Sopas</button>
-        <button id="btn-POSTRES" class="cat-btn inactive" onclick="cambiarCategoria('POSTRES')">Postres</button>
     </div>
 
     <div id="categoria-actual" style="padding: 10px 15px; font-weight: bold; text-transform: uppercase; color: #444;">Categoría: Broaster</div>
@@ -82,7 +82,7 @@
             </div>
             <div class="input-group">
                 <label>Observaciones (OBS):</label>
-                <textarea id="observaciones" rows="2" placeholder="Ej: Traer gaseosa bien fría, cambio de $50k..."></textarea>
+                <textarea id="observaciones" rows="2" placeholder="Ej: Jugo de Mora en leche, cambio de $50k..."></textarea>
             </div>
         </div>
     </div>
@@ -155,8 +155,19 @@
             { id: 40, nombre: "ENERGIZANTE", precio: 3000 },
             { id: 41, nombre: "AGUA PEQUEÑA", precio: 1500 }
         ],
-        'SOPAS': [], // Listas para cuando pases la foto
-        'POSTRES': []
+        'JUGOS': [
+            { id: 42, nombre: "JUGO EN LECHE", precio: 6000 },
+            { id: 43, nombre: "JUGO EN AGUA", precio: 5000 },
+            { id: 44, nombre: "LIMONADA NATURAL", precio: 5000 },
+            { id: 45, nombre: "LIMONADA CEREZADA", precio: 7000 },
+            { id: 46, nombre: "LIMONADA DE COCO", precio: 10000 },
+            { id: 47, nombre: "MORA", precio: 0 },
+            { id: 48, nombre: "FRESA", precio: 0 },
+            { id: 49, nombre: "GUANABANA", precio: 0 },
+            { id: 50, nombre: "LULO", precio: 0 },
+            { id: 51, nombre: "MANGO", precio: 0 }
+        ],
+        'SOPAS': []
     };
 
     let carrito = [];
@@ -170,12 +181,9 @@
 
     function cambiarCategoria(cat) {
         catActual = cat;
-        // Quitar active de todos los botones
         document.querySelectorAll('.cat-btn').forEach(b => b.classList.replace('active', 'inactive'));
-        // Poner active al seleccionado
         const btn = document.getElementById('btn-' + cat);
         if(btn) btn.classList.replace('inactive', 'active');
-        
         document.getElementById('categoria-actual').innerText = `Categoría: ${cat}`;
         renderMenu();
     }
@@ -189,7 +197,7 @@
         container.innerHTML = menuData[catActual].map(p => `
             <div class="product-card" onclick="agregarAlCarrito(${p.id})">
                 <div class="product-name">${p.nombre}</div>
-                <span class="product-price">$${p.precio.toLocaleString()}</span>
+                <span class="product-price">${p.precio > 0 ? '$' + p.precio.toLocaleString() : '---'}</span>
             </div>
         `).join('');
     }
