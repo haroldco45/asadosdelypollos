@@ -6,154 +6,60 @@
     <title>Asados DelyPollos - Broaster</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --rojo: #d32f2f;
-            --verde: #4caf50;
-            --gris-fondo: #f4f4f4;
-        }
+        :root { --rojo: #d32f2f; --verde: #25d366; --verde-oscuro: #128C7E; --gris-fondo: #f4f4f4; }
+        body { font-family: 'Roboto', sans-serif; margin: 0; background-color: var(--gris-fondo); display: flex; justify-content: center; }
+        .app-container { width: 100%; max-width: 450px; background: white; min-height: 100vh; padding-bottom: 120px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        
+        /* Encabezado */
+        .info-header { background: #fff; padding: 10px; text-align: center; font-size: 11px; border-bottom: 1px solid #ddd; }
+        header { background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?q=80&w=500'); background-size: cover; height: 140px; display: flex; justify-content: center; align-items: center; }
+        .logo { max-width: 180px; filter: drop-shadow(2px 2px 4px #000); }
 
-        body {
-            font-family: 'Roboto', sans-serif;
-            margin: 0;
-            background-color: var(--gris-fondo);
-            display: flex;
-            justify-content: center;
-        }
-
-        .app-container {
-            width: 100%;
-            max-width: 450px;
-            background: white;
-            min-height: 100vh;
-            padding-bottom: 100px;
-        }
-
-        .info-header {
-            background: #fff;
-            padding: 10px;
-            text-align: center;
-            font-size: 12px;
-            border-bottom: 1px solid #ddd;
-        }
-
-        header {
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?q=80&w=500');
-            background-size: cover;
-            height: 150px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .logo { max-width: 200px; filter: drop-shadow(2px 2px 5px #000); }
-
-        .search-area { padding: 15px; }
-        .search-bar {
-            width: 100%;
-            padding: 10px;
-            border-radius: 20px;
-            border: 1px solid #ccc;
-            box-sizing: border-box;
-        }
-
-        .categories {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 8px;
-            padding: 0 15px;
-        }
-
-        .cat-btn {
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
-            color: white;
-            font-weight: bold;
-            font-size: 11px;
-            cursor: pointer;
-            text-transform: uppercase;
-        }
-
+        /* Categorías */
+        .categories { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; padding: 15px; }
+        .cat-btn { padding: 10px; border: none; border-radius: 5px; color: white; font-weight: bold; font-size: 10px; cursor: pointer; text-transform: uppercase; }
         .active { background-color: var(--rojo); }
-        .inactive { background-color: var(--verde); }
+        .inactive { background-color: #4caf50; }
 
-        .section-title { padding: 15px; font-weight: bold; font-size: 18px; }
+        /* Grid de Productos */
+        .products-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; padding: 0 15px; }
+        .product-card { background-color: var(--rojo); color: white; padding: 12px; border-radius: 10px; text-align: center; cursor: pointer; transition: 0.2s; }
+        .product-card:active { transform: scale(0.98); }
+        .product-name { font-size: 11px; font-weight: bold; height: 30px; line-height: 1.2; }
+        .product-price { font-size: 15px; display: block; margin-top: 5px; font-weight: bold; }
 
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-            padding: 15px;
-        }
+        /* Formulario Cliente */
+        .cliente-data { padding: 15px; background: #fff; border-top: 5px solid var(--gris-fondo); }
+        .input-group { margin-bottom: 10px; }
+        .input-group label { display: block; font-size: 12px; margin-bottom: 3px; font-weight: bold; }
+        .input-group input { width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; }
+        .edit-msg { font-size: 10px; color: var(--rojo); cursor: pointer; text-decoration: underline; }
 
-        .product-card {
-            background-color: var(--rojo);
-            color: white;
-            padding: 15px;
-            border-radius: 10px;
-            text-align: center;
-            cursor: pointer;
-        }
+        /* Carrito / Factura */
+        .cart-section { padding: 15px; background: #fff; border-top: 5px solid var(--gris-fondo); }
+        .cart-item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px dashed #eee; }
+        .item-info { flex: 1; }
+        .item-info div { font-size: 13px; font-weight: bold; }
+        .item-info span { font-size: 11px; color: #666; }
+        
+        .qty-controls { display: flex; align-items: center; gap: 8px; }
+        .qty-box { width: 30px; text-align: center; border: 1px solid #ccc; border-radius: 4px; font-weight: bold; background: #f9f9f9; }
+        .qty-btn { background: #4caf50; border: none; color: white; width: 24px; height: 24px; border-radius: 4px; cursor: pointer; font-weight: bold; }
 
-        .product-name { font-size: 12px; font-weight: bold; height: 30px; }
-        .product-price { font-size: 16px; display: block; margin-top: 5px; }
-
-        /* Estilos del Carrito */
-        .cart-section {
-            padding: 15px;
-            border-top: 2px solid var(--gris-fondo);
-            background: #fff;
-        }
-
-        .cart-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
-            font-size: 14px;
-        }
-
-        .qty-controls button {
-            background: var(--verde);
-            border: none;
-            color: white;
-            width: 25px;
-            height: 25px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .btn-whatsapp {
-            width: 100%;
-            padding: 15px;
-            background-color: #25d366;
-            color: white;
-            border: none;
-            border-radius: 10px;
-            font-weight: bold;
-            font-size: 16px;
-            cursor: pointer;
-            margin-top: 10px;
-            display: none; /* Se activa con JS */
-        }
-
+        .total-box { background: #f9f9f9; padding: 15px; border-radius: 8px; margin-top: 10px; }
+        .total-row { display: flex; justify-content: space-between; margin-bottom: 5px; font-size: 14px; }
+        
+        .btn-whatsapp { width: 100%; padding: 15px; background-color: var(--verde); color: white; border: none; border-radius: 10px; font-weight: bold; font-size: 16px; cursor: pointer; margin-top: 15px; display: none; }
+        .btn-whatsapp:hover { background-color: var(--verde-oscuro); }
+        
         footer { text-align: center; padding: 20px; font-size: 12px; color: #888; }
     </style>
 </head>
 <body>
 
 <div class="app-container">
-    <div class="info-header">
-        📍 Frente al estadio de fútbol, Caucasia | 📞 3117700431
-    </div>
-
-    <header>
-        <img src="ASADOS-DELYPOLLOS.PNG" alt="DelyPollos" class="logo">
-    </header>
-
-    <div class="search-area">
-        <input type="text" class="search-bar" placeholder="Buscar producto...">
-    </div>
+    <div class="info-header">📍 Frente al estadio de fútbol, Caucasia | 📞 3117700431</div>
+    <header><img src="ASADOS-DELYPOLLOS.PNG" alt="DelyPollos" class="logo"></header>
 
     <div class="categories">
         <button class="cat-btn active">Broaster</button>
@@ -164,25 +70,46 @@
         <button class="cat-btn inactive">Postres</button>
     </div>
 
-    <div class="section-title">BROASTER</div>
+    <div style="padding: 10px 15px; font-weight: bold;">CATEGORÍA: BROASTER</div>
+    <div class="products-grid" id="menu-broaster"></div>
 
-    <div class="products-grid" id="menu-broaster">
+    <div class="cliente-data">
+        <div style="display: flex; justify-content: space-between;">
+            <strong style="font-size: 14px;">DATOS DE ENTREGA</strong>
+            <span class="edit-msg" onclick="habilitarEdicion()">Editar datos</span>
         </div>
-
-    <div class="cart-section">
-        <h3>Tu Pedido</h3>
-        <div id="cart-list">
-            <p style="color: #999;">El carrito está vacío</p>
+        <div id="form-cliente">
+            <div class="input-group">
+                <label>Nombre Completo:</label>
+                <input type="text" id="nombre" placeholder="Ej: Juan Perez">
+            </div>
+            <div class="input-group">
+                <label>Dirección exacta:</label>
+                <input type="text" id="direccion" placeholder="Ej: Carrera 5 #10-20">
+            </div>
+            <div class="input-group">
+                <label>Celular de contacto:</label>
+                <input type="tel" id="tel-cliente" placeholder="Ej: 3101234567">
+            </div>
         </div>
-        <div id="total-area" style="font-weight: bold; margin-top: 10px;"></div>
-        <button id="send-btn" class="btn-whatsapp" onclick="enviarPedido()">
-            PEDIR POR WHATSAPP
-        </button>
     </div>
 
-    <footer>
-        App desarrollada por **VIBRAS POSITIVAS**
-    </footer>
+    <div class="cart-section">
+        <strong style="font-size: 14px;">RESUMEN DE PEDIDO</strong>
+        <div id="cart-list" style="margin-top: 10px;">
+            <p style="color: #999; font-size: 13px;">No hay productos seleccionados.</p>
+        </div>
+        
+        <div id="resumen-valores" class="total-box" style="display: none;">
+            <div class="total-row"><span>Subtotal:</span> <span id="subtotal-val">$0</span></div>
+            <div class="total-row" style="color: var(--rojo); font-weight: bold; font-size: 18px;">
+                <span>TOTAL:</span> <span id="total-val">$0</span>
+            </div>
+            <button id="send-btn" class="btn-whatsapp" onclick="enviarPedido()">PEDIR POR WHATSAPP</button>
+        </div>
+    </div>
+
+    <footer>App desarrollada por <strong>VIBRAS POSITIVAS</strong></footer>
 </div>
 
 <script>
@@ -199,9 +126,18 @@
 
     let carrito = [];
 
-    function mostrarMenu() {
-        const grid = document.getElementById('menu-broaster');
-        grid.innerHTML = productos.map(p => `
+    // Cargar datos guardados
+    window.onload = () => {
+        if(localStorage.getItem('nombre')) {
+            document.getElementById('nombre').value = localStorage.getItem('nombre');
+            document.getElementById('direccion').value = localStorage.getItem('direccion');
+            document.getElementById('tel-cliente').value = localStorage.getItem('tel-cliente');
+        }
+        renderMenu();
+    };
+
+    function renderMenu() {
+        document.getElementById('menu-broaster').innerHTML = productos.map(p => `
             <div class="product-card" onclick="agregarAlCarrito(${p.id})">
                 <div class="product-name">${p.nombre}</div>
                 <span class="product-price">$${p.precio.toLocaleString()}</span>
@@ -210,74 +146,94 @@
     }
 
     function agregarAlCarrito(id) {
-        const prod = productos.find(p => p.id === id);
-        const existe = carrito.find(item => item.id === id);
-
-        if (existe) {
-            existe.cantidad++;
-        } else {
-            carrito.push({ ...prod, cantidad: 1 });
-        }
-        actualizarCarrito();
+        const item = carrito.find(i => i.id === id);
+        if (item) item.cantidad++;
+        else carrito.push({ ...productos.find(p => p.id === id), cantidad: 1 });
+        actualizarUI();
     }
 
-    function cambiarCantidad(id, delta) {
+    function modQty(id, delta) {
         const item = carrito.find(i => i.id === id);
         if (item) {
             item.cantidad += delta;
-            if (item.cantidad <= 0) {
-                carrito = carrito.filter(i => i.id !== id);
-            }
+            if (item.cantidad <= 0) carrito = carrito.filter(i => i.id !== id);
         }
-        actualizarCarrito();
+        actualizarUI();
     }
 
-    function actualizarCarrito() {
+    function actualizarUI() {
         const lista = document.getElementById('cart-list');
-        const totalArea = document.getElementById('total-area');
+        const resumen = document.getElementById('resumen-valores');
         const btn = document.getElementById('send-btn');
-
+        
         if (carrito.length === 0) {
-            lista.innerHTML = '<p style="color: #999;">El carrito está vacío</p>';
-            totalArea.innerHTML = '';
-            btn.style.display = 'none';
+            lista.innerHTML = '<p style="color: #999;">No hay productos seleccionados.</p>';
+            resumen.style.display = 'none';
             return;
         }
 
+        resumen.style.display = 'block';
+        btn.style.display = 'block';
+        
         let total = 0;
         lista.innerHTML = carrito.map(item => {
             total += item.precio * item.cantidad;
             return `
                 <div class="cart-item">
-                    <span>${item.nombre} x${item.cantidad}</span>
-                    <div class="qty-controls">
-                        <button onclick="cambiarCantidad(${item.id}, -1)">-</button>
-                        <button onclick="cambiarCantidad(${item.id}, 1)">+</button>
+                    <div class="item-info">
+                        <div>${item.nombre}</div>
+                        <span>Precio Unit: $${item.precio.toLocaleString()}</span>
                     </div>
-                </div>
-            `;
+                    <div class="qty-controls">
+                        <button class="qty-btn" onclick="modQty(${item.id}, -1)">-</button>
+                        <div class="qty-box">${item.cantidad}</div>
+                        <button class="qty-btn" onclick="modQty(${item.id}, 1)">+</button>
+                    </div>
+                </div>`;
         }).join('');
 
-        totalArea.innerHTML = `TOTAL: $${total.toLocaleString()}`;
-        btn.style.display = 'block';
+        document.getElementById('subtotal-val').innerText = `$${total.toLocaleString()}`;
+        document.getElementById('total-val').innerText = `$${total.toLocaleString()}`;
     }
 
     function enviarPedido() {
-        let texto = "Hola! Quiero realizar el siguiente pedido:\n\n";
-        let total = 0;
-        carrito.forEach(item => {
-            texto += `- ${item.nombre} (x${item.cantidad}): $${(item.precio * item.cantidad).toLocaleString()}\n`;
-            total += item.precio * item.cantidad;
-        });
-        texto += `\n*TOTAL A PAGAR: $${total.toLocaleString()}*`;
-        texto += `\n\nDirección: Caucasia, Frente al estadio.`;
+        const n = document.getElementById('nombre').value;
+        const d = document.getElementById('direccion').value;
+        const t = document.getElementById('tel-cliente').value;
 
-        const url = `https://wa.me/573117700431?text=${encodeURIComponent(texto)}`;
-        window.open(url, '_blank');
+        if(!n || !d || !t) return alert("Por favor completa tus datos de entrega.");
+
+        // Guardar para el futuro
+        localStorage.setItem('nombre', n);
+        localStorage.setItem('direccion', d);
+        localStorage.setItem('tel-cliente', t);
+
+        let msg = `*ASADOS DELYPOLLOS*\n`;
+        msg += `Frente al Estadio, Caucasia | 3117700431\n`;
+        msg += `--------------------------------\n`;
+        msg += `*CLIENTE:* ${n}\n`;
+        msg += `*TEL:* ${t}\n`;
+        msg += `*DIRECCIÓN:* ${d}\n`;
+        msg += `--------------------------------\n`;
+        msg += `*DETALLE DEL PEDIDO:*\n`;
+        
+        let total = 0;
+        carrito.forEach(i => {
+            let sub = i.precio * i.cantidad;
+            total += sub;
+            msg += `${i.cantidad}x ${i.nombre}\n`;
+            msg += `   Unit: $${i.precio.toLocaleString()} - Sub: $${sub.toLocaleString()}\n`;
+        });
+
+        msg += `--------------------------------\n`;
+        msg += `*TOTAL A PAGAR: $${total.toLocaleString()}*`;
+
+        window.open(`https://wa.me/573117700431?text=${encodeURIComponent(msg)}`);
     }
 
-    mostrarMenu();
+    function habilitarEdicion() {
+        document.getElementById('nombre').focus();
+    }
 </script>
-
 </body>
 </html>
