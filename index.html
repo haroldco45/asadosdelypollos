@@ -56,6 +56,7 @@
         <button id="btn-SOPAS" class="cat-btn inactive" onclick="cambiarCategoria('SOPAS')">Sopas</button>
         <button id="btn-ADICIONES" class="cat-btn inactive" onclick="cambiarCategoria('ADICIONES')">Adiciones</button>
         <button id="btn-DESAYUNOS" class="cat-btn inactive" onclick="cambiarCategoria('DESAYUNOS')">Desayunos</button>
+        <button id="btn-CASERITOS" class="cat-btn inactive" onclick="cambiarCategoria('CASERITOS')">Caseritos</button>
     </div>
 
     <div id="categoria-actual" style="padding: 10px 15px; font-weight: bold; text-transform: uppercase;">Categoría: Broaster</div>
@@ -94,20 +95,14 @@
 <script>
     const menuData = {
         'BROASTER': [
-            { id: 1, nombre: "POLLO ENTERO BROASTER", precio: 48000 },
-            { id: 2, nombre: "1/2 POLLO BROASTER", precio: 24000 },
-            { id: 3, nombre: "1/4 PERNIL BROASTER", precio: 13000 },
-            { id: 4, nombre: "1/4 PECHUGA BROASTER", precio: 15000 },
-            { id: 5, nombre: "PECHUGA BROASTER", precio: 12000 },
-            { id: 6, nombre: "ALA BROASTER", precio: 7000 },
-            { id: 7, nombre: "CONTRAMUSLO BROASTER", precio: 7000 },
-            { id: 8, nombre: "MUSLO BROASTER", precio: 6000 }
+            { id: 1, nombre: "POLLO ENTERO BROASTER", precio: 48000 }, { id: 2, nombre: "1/2 POLLO BROASTER", precio: 24000 },
+            { id: 3, nombre: "1/4 PERNIL BROASTER", precio: 13000 }, { id: 4, nombre: "1/4 PECHUGA BROASTER", precio: 15000 },
+            { id: 5, nombre: "PECHUGA BROASTER", precio: 12000 }, { id: 6, nombre: "ALA BROASTER", precio: 7000 },
+            { id: 7, nombre: "CONTRAMUSLO BROASTER", precio: 7000 }, { id: 8, nombre: "MUSLO BROASTER", precio: 6000 }
         ],
         'ASADO': [
-            { id: 9, nombre: "POLLO ENTERO ASADO", precio: 48000 },
-            { id: 10, nombre: "1/2 POLLO ASADO", precio: 24000 },
-            { id: 11, nombre: "1/4 PERNIL ASADO", precio: 13000 },
-            { id: 12, nombre: "1/4 PECHUGA ASADO", precio: 15000 }
+            { id: 9, nombre: "POLLO ENTERO ASADO", precio: 48000 }, { id: 10, nombre: "1/2 POLLO ASADO", precio: 24000 },
+            { id: 11, nombre: "1/4 PERNIL ASADO", precio: 13000 }, { id: 12, nombre: "1/4 PECHUGA ASADO", precio: 15000 }
         ],
         'BANDEJAS': [
             { id: 13, nombre: "BANDEJA RES", precio: 20000 }, { id: 14, nombre: "BANDEJA CERDO", precio: 20000 },
@@ -162,6 +157,11 @@
             { id: 90, nombre: "CHOCOLATE", precio: 3000 }, { id: 91, nombre: "CAFE", precio: 2000 },
             { id: 92, nombre: "DES. PECHUGA PLANCHA", precio: 18000 }, { id: 93, nombre: "DES. CHANGUA", precio: 8000 },
             { id: 94, nombre: "AGUAPANELA", precio: 3000 }
+        ],
+        'CASERITOS': [
+            { id: 95, nombre: "CASERITO MOLIDA", precio: 10000 },
+            { id: 96, nombre: "CASERITO SUDADA", precio: 10000 },
+            { id: 97, nombre: "CASERITO CARNE DESMECHADA", precio: 10000 }
         ]
     };
 
