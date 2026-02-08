@@ -52,8 +52,8 @@
         <button id="btn-ASADO" class="cat-btn inactive" onclick="cambiarCategoria('ASADO')">Asado</button>
         <button id="btn-BANDEJAS" class="cat-btn inactive" onclick="cambiarCategoria('BANDEJAS')">Bandejas</button>
         <button id="btn-BEBIDAS" class="cat-btn inactive" onclick="cambiarCategoria('BEBIDAS')">Bebidas</button>
-        <button id="btn-JUGOS" class="cat-btn inactive" onclick="cambiarCategoria('JUGOS')">Jugos Naturales</button>
-        <button id="btn-SOPAS" class="cat-btn inactive" onclick="cambiarCategoria('SOPAS')">Sopas</button>
+        <button id="btn-JUGOS" class="cat-btn inactive" onclick="cambiarCategoria('JUGOS')">Jugos</button>
+        <button id="btn-ADICIONES" class="cat-btn inactive" onclick="cambiarCategoria('ADICIONES')">Adiciones</button>
     </div>
 
     <div id="categoria-actual" style="padding: 10px 15px; font-weight: bold; text-transform: uppercase;">Categoría: Broaster</div>
@@ -73,7 +73,7 @@
                     <option value="Datáfono">Datáfono</option>
                 </select>
             </div>
-            <div class="input-group"><label>Observaciones (OBS):</label><textarea id="observaciones" rows="2"></textarea></div>
+            <div class="input-group"><label>Observaciones (OBS):</label><textarea id="observaciones" rows="2" placeholder="Ej: Papas bien crocantes..."></textarea></div>
         </div>
     </div>
 
@@ -108,51 +108,44 @@
             { id: 12, nombre: "1/4 PECHUGA ASADO", precio: 15000 }
         ],
         'BANDEJAS': [
-            { id: 13, nombre: "BANDEJA RES", precio: 20000 },
-            { id: 14, nombre: "BANDEJA CERDO", precio: 20000 },
-            { id: 15, nombre: "BANDEJA HIGADO", precio: 20000 },
-            { id: 16, nombre: "BANDEJA CHICHARRON", precio: 22000 },
-            { id: 17, nombre: "BANDEJA CARNE MOLIDA", precio: 20000 },
-            { id: 18, nombre: "BANDEJA PECHUGA PLANCHA", precio: 22000 },
-            { id: 19, nombre: "BANDEJA CHULETA DE CERDO", precio: 22000 },
-            { id: 20, nombre: "BANDEJA COSTILLA BBQ", precio: 22000 },
-            { id: 21, nombre: "BANDEJA CARNE DESMECHADA", precio: 20000 },
-            { id: 22, nombre: "BANDEJA POLLO DESMECHADO", precio: 20000 },
-            { id: 23, nombre: "BANDEJA TILAPIA", precio: 30000 },
-            { id: 24, nombre: "BANDEJA CACHAMA", precio: 25000 },
-            { id: 25, nombre: "BANDEJA BOCACHICO SUDADO", precio: 25000 },
-            { id: 26, nombre: "BANDEJA BOCACHICO FRITO", precio: 25000 },
-            { id: 27, nombre: "BANDEJA POLLO BROASTER 1P", precio: 20000 },
-            { id: 28, nombre: "BANDEJA POLLO BROASTER 2P", precio: 25000 },
-            { id: 29, nombre: "BANDEJA POLLO ASADO", precio: 25000 },
-            { id: 30, nombre: "SOPA DE RES", precio: 0 },
-            { id: 31, nombre: "SOPA POLLO", precio: 0 },
-            { id: 32, nombre: "SOPA DE PASTAS", precio: 0 }
+            { id: 13, nombre: "BANDEJA RES", precio: 20000 }, { id: 14, nombre: "BANDEJA CERDO", precio: 20000 },
+            { id: 15, nombre: "BANDEJA HIGADO", precio: 20000 }, { id: 16, nombre: "BANDEJA CHICHARRON", precio: 22000 },
+            { id: 17, nombre: "BANDEJA CARNE MOLIDA", precio: 20000 }, { id: 18, nombre: "BANDEJA PECHUGA PLANCHA", precio: 22000 },
+            { id: 19, nombre: "BANDEJA CHULETA DE CERDO", precio: 22000 }, { id: 20, nombre: "BANDEJA COSTILLA BBQ", precio: 22000 },
+            { id: 21, nombre: "BANDEJA CARNE DESMECHADA", precio: 20000 }, { id: 22, nombre: "BANDEJA POLLO DESMECHADO", precio: 20000 },
+            { id: 23, nombre: "BANDEJA TILAPIA", precio: 30000 }, { id: 24, nombre: "BANDEJA CACHAMA", precio: 25000 },
+            { id: 25, nombre: "BANDEJA BOCACHICO SUDADO", precio: 25000 }, { id: 26, nombre: "BANDEJA BOCACHICO FRITO", precio: 25000 },
+            { id: 27, nombre: "BANDEJA POLLO BROASTER 1P", precio: 20000 }, { id: 28, nombre: "BANDEJA POLLO BROASTER 2P", precio: 25000 },
+            { id: 29, nombre: "BANDEJA POLLO ASADO", precio: 25000 }, { id: 30, nombre: "SOPA DE RES", precio: 0 },
+            { id: 31, nombre: "SOPA POLLO", precio: 0 }, { id: 32, nombre: "SOPA DE PASTAS", precio: 0 }
         ],
         'BEBIDAS': [
-            { id: 33, nombre: "COCACOLA 1.5", precio: 10000 },
-            { id: 34, nombre: "GASEOSA X400", precio: 5000 },
-            { id: 35, nombre: "JUGO HIT", precio: 5000 },
-            { id: 36, nombre: "BOTELLA AGUA", precio: 3000 },
-            { id: 37, nombre: "GATORADE", precio: 7000 },
-            { id: 38, nombre: "SODA", precio: 4000 },
-            { id: 39, nombre: "CERVEZA", precio: 5000 },
-            { id: 40, nombre: "ENERGIZANTE", precio: 3000 },
+            { id: 33, nombre: "COCACOLA 1.5", precio: 10000 }, { id: 34, nombre: "GASEOSA X400", precio: 5000 },
+            { id: 35, nombre: "JUGO HIT", precio: 5000 }, { id: 36, nombre: "BOTELLA AGUA", precio: 3000 },
+            { id: 37, nombre: "GATORADE", precio: 7000 }, { id: 38, nombre: "SODA", precio: 4000 },
+            { id: 39, nombre: "CERVEZA", precio: 5000 }, { id: 40, nombre: "ENERGIZANTE", precio: 3000 },
             { id: 41, nombre: "AGUA PEQUEÑA", precio: 1500 }
         ],
         'JUGOS': [
-            { id: 42, nombre: "JUGO EN LECHE", precio: 6000 },
-            { id: 43, nombre: "JUGO EN AGUA", precio: 5000 },
-            { id: 44, nombre: "LIMONADA NATURAL", precio: 5000 },
-            { id: 45, nombre: "LIMONADA CEREZADA", precio: 7000 },
-            { id: 46, nombre: "LIMONADA DE COCO", precio: 10000 },
-            { id: 47, nombre: "SABOR: MORA", precio: 0 },
-            { id: 48, nombre: "SABOR: FRESA", precio: 0 },
-            { id: 49, nombre: "SABOR: GUANABANA", precio: 0 },
-            { id: 50, nombre: "SABOR: LULO", precio: 0 },
-            { id: 51, nombre: "SABOR: MANGO", precio: 0 }
+            { id: 42, nombre: "NISPERO", precio: 10000 }, { id: 43, nombre: "ZAPOTE", precio: 10000 },
+            { id: 44, nombre: "GUANABANA", precio: 10000 }, { id: 45, nombre: "BANANO", precio: 10000 },
+            { id: 46, nombre: "PIÑA", precio: 10000 }, { id: 47, nombre: "MARACUYA", precio: 10000 },
+            { id: 48, nombre: "MILO", precio: 10000 }, { id: 49, nombre: "GUARAPO", precio: 2000 },
+            { id: 50, nombre: "AVENA", precio: 2000 }, { id: 51, nombre: "NARANJA", precio: 10000 },
+            { id: 52, nombre: "LIMONADA", precio: 8000 }, { id: 53, nombre: "TOMATE DE ARBOL", precio: 10000 },
+            { id: 54, nombre: "JARRA DE JUGO", precio: 25000 }, { id: 55, nombre: "MORA", precio: 10000 },
+            { id: 56, nombre: "MICHELADA CEREZADA", precio: 12000 }
         ],
-        'SOPAS': []
+        'ADICIONES': [
+            { id: 57, nombre: "PAPAS A LA FRANCESA", precio: 7000 }, { id: 58, nombre: "ARROZ", precio: 3000 },
+            { id: 59, nombre: "ENSALADA", precio: 3000 }, { id: 60, nombre: "AREPAS FRITAS", precio: 2000 },
+            { id: 61, nombre: "YUCAS FRITAS", precio: 7000 }, { id: 62, nombre: "PAPAS COCINADAS", precio: 3000 },
+            { id: 63, nombre: "AGUACATE", precio: 4000 }, { id: 64, nombre: "HUEVO", precio: 2000 },
+            { id: 65, nombre: "PATACONES", precio: 5000 }, { id: 66, nombre: "CHICHARRON", precio: 12000 },
+            { id: 67, nombre: "RES", precio: 10000 }, { id: 68, nombre: "CERDO", precio: 10000 },
+            { id: 69, nombre: "HIGADO", precio: 10000 }, { id: 70, nombre: "PECHUGA PLANCHA", precio: 12000 },
+            { id: 71, nombre: "ARROZ POLLO", precio: 2000 }
+        ]
     };
 
     let carrito = [];
@@ -174,7 +167,6 @@
 
     function renderMenu() {
         const container = document.getElementById('menu-container');
-        if (menuData[catActual].length === 0) { container.innerHTML = '<p style="padding: 20px;">Próximamente...</p>'; return; }
         container.innerHTML = menuData[catActual].map(p => `
             <div class="product-card" onclick="agregarAlCarrito(${p.id})">
                 <div class="product-name">${p.nombre}</div>
@@ -206,15 +198,14 @@
         let total = 0;
         lista.innerHTML = carrito.map(item => {
             total += (item.precio * item.cantidad);
-            return `
-                <div class="cart-item">
-                    <div><strong>${item.nombre}</strong><br><small>$${item.precio.toLocaleString()} c/u</small></div>
-                    <div class="qty-controls">
-                        <button class="qty-btn" onclick="modQty(${item.id}, -1)">-</button>
-                        <div class="qty-box">${item.cantidad}</div>
-                        <button class="qty-btn" onclick="modQty(${item.id}, 1)">+</button>
-                    </div>
-                </div>`;
+            return `<div class="cart-item">
+                <div><strong>${item.nombre}</strong><br><small>$${item.precio.toLocaleString()} c/u</small></div>
+                <div class="qty-controls">
+                    <button class="qty-btn" onclick="modQty(${item.id}, -1)">-</button>
+                    <div class="qty-box">${item.cantidad}</div>
+                    <button class="qty-btn" onclick="modQty(${item.id}, 1)">+</button>
+                </div>
+            </div>`;
         }).join('');
         document.getElementById('total-val').innerText = `$${total.toLocaleString()}`;
     }
