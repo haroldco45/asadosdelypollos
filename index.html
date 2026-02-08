@@ -27,7 +27,7 @@
         .form-section { padding: 15px; background: #fff; border-top: 5px solid var(--gris-fondo); }
         .input-group { margin-bottom: 12px; }
         .input-group label { display: block; font-size: 12px; margin-bottom: 4px; font-weight: bold; }
-        .input-group input, .input-group select, .input-group textarea { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; }
+        .input-group input, .input-group select, .input-group textarea { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; font-family: inherit; }
         
         .cart-section { padding: 15px; background: #fff; border-top: 5px solid var(--gris-fondo); }
         .cart-item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; border-bottom: 1px dashed #eee; padding-bottom: 8px; }
@@ -55,6 +55,7 @@
         <button id="btn-JUGOS" class="cat-btn inactive" onclick="cambiarCategoria('JUGOS')">Jugos</button>
         <button id="btn-SOPAS" class="cat-btn inactive" onclick="cambiarCategoria('SOPAS')">Sopas</button>
         <button id="btn-ADICIONES" class="cat-btn inactive" onclick="cambiarCategoria('ADICIONES')">Adiciones</button>
+        <button id="btn-DESAYUNOS" class="cat-btn inactive" onclick="cambiarCategoria('DESAYUNOS')">Desayunos</button>
     </div>
 
     <div id="categoria-actual" style="padding: 10px 15px; font-weight: bold; text-transform: uppercase;">Categoría: Broaster</div>
@@ -74,7 +75,7 @@
                     <option value="Datáfono">Datáfono</option>
                 </select>
             </div>
-            <div class="input-group"><label>Observaciones (OBS):</label><textarea id="observaciones" rows="2" placeholder="Ej: Sopa sin cebolla..."></textarea></div>
+            <div class="input-group"><label>Observaciones (OBS):</label><textarea id="observaciones" rows="2"></textarea></div>
         </div>
     </div>
 
@@ -153,6 +154,14 @@
             { id: 67, nombre: "RES", precio: 10000 }, { id: 68, nombre: "CERDO", precio: 10000 },
             { id: 69, nombre: "HIGADO", precio: 10000 }, { id: 70, nombre: "PECHUGA PLANCHA", precio: 12000 },
             { id: 71, nombre: "ARROZ POLLO", precio: 2000 }
+        ],
+        'DESAYUNOS': [
+            { id: 84, nombre: "DES. HUEVO", precio: 15000 }, { id: 85, nombre: "DES. HUEVOS RANCHEROS", precio: 15000 },
+            { id: 86, nombre: "DES. RES", precio: 16000 }, { id: 87, nombre: "DES. CERDO", precio: 16000 },
+            { id: 88, nombre: "DES. HIGADO", precio: 16000 }, { id: 89, nombre: "DES. CHICHARRON", precio: 18000 },
+            { id: 90, nombre: "CHOCOLATE", precio: 3000 }, { id: 91, nombre: "CAFE", precio: 2000 },
+            { id: 92, nombre: "DES. PECHUGA PLANCHA", precio: 18000 }, { id: 93, nombre: "DES. CHANGUA", precio: 8000 },
+            { id: 94, nombre: "AGUAPANELA", precio: 3000 }
         ]
     };
 
