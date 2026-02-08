@@ -10,42 +10,32 @@
         body { font-family: 'Roboto', sans-serif; margin: 0; background-color: var(--gris-fondo); display: flex; justify-content: center; }
         .app-container { width: 100%; max-width: 450px; background: white; min-height: 100vh; padding-bottom: 120px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
         
-        /* Header */
         .info-header { background: #fff; padding: 10px; text-align: center; font-size: 11px; border-bottom: 1px solid #ddd; }
         header { background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=500'); background-size: cover; height: 140px; display: flex; justify-content: center; align-items: center; }
         .logo { max-width: 180px; filter: drop-shadow(2px 2px 4px #000); }
 
-        /* Categorías */
         .categories { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; padding: 15px; }
-        .cat-btn { padding: 10px; border: none; border-radius: 5px; color: white; font-weight: bold; font-size: 10px; cursor: pointer; text-transform: uppercase; transition: 0.3s; }
+        .cat-btn { padding: 10px; border: none; border-radius: 5px; color: white; font-weight: bold; font-size: 10px; cursor: pointer; text-transform: uppercase; }
         .cat-btn.active { background-color: var(--rojo); }
         .cat-btn.inactive { background-color: var(--verde-boton); }
 
-        /* Grid de Productos */
-        .products-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; padding: 0 15px; min-height: 200px; }
-        .product-card { background-color: var(--rojo); color: white; padding: 12px; border-radius: 10px; text-align: center; cursor: pointer; transition: 0.2s; }
-        .product-card:active { transform: scale(0.98); }
+        .products-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; padding: 0 15px; }
+        .product-card { background-color: var(--rojo); color: white; padding: 12px; border-radius: 10px; text-align: center; cursor: pointer; }
         .product-name { font-size: 11px; font-weight: bold; height: 30px; line-height: 1.2; display: flex; align-items: center; justify-content: center; }
         .product-price { font-size: 15px; display: block; margin-top: 5px; font-weight: bold; }
 
-        /* Formulario Cliente */
-        .cliente-data { padding: 15px; background: #fff; border-top: 5px solid var(--gris-fondo); }
-        .input-group { margin-bottom: 10px; }
-        .input-group label { display: block; font-size: 12px; margin-bottom: 3px; font-weight: bold; }
-        .input-group input { width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; }
-
-        /* Carrito / Factura */
-        .cart-section { padding: 15px; background: #fff; border-top: 5px solid var(--gris-fondo); }
-        .cart-item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px dashed #eee; }
-        .item-info { flex: 1; }
-        .item-info div { font-size: 13px; font-weight: bold; }
-        .item-info span { font-size: 11px; color: #666; }
+        .form-section { padding: 15px; background: #fff; border-top: 5px solid var(--gris-fondo); }
+        .input-group { margin-bottom: 12px; }
+        .input-group label { display: block; font-size: 12px; margin-bottom: 4px; font-weight: bold; color: #333; }
+        .input-group input, .input-group select, .input-group textarea { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; font-family: inherit; }
         
+        .cart-section { padding: 15px; background: #fff; border-top: 5px solid var(--gris-fondo); }
+        .cart-item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; border-bottom: 1px dashed #eee; padding-bottom: 8px; }
         .qty-controls { display: flex; align-items: center; gap: 8px; }
         .qty-box { width: 30px; text-align: center; border: 1px solid #ccc; border-radius: 4px; font-weight: bold; }
         .qty-btn { background: var(--verde-boton); border: none; color: white; width: 24px; height: 24px; border-radius: 4px; cursor: pointer; }
 
-        .total-box { background: #f9f9f9; padding: 15px; border-radius: 8px; margin-top: 10px; }
+        .total-box { background: #f9f9f9; padding: 15px; border-radius: 8px; margin-top: 10px; text-align: right; }
         .btn-whatsapp { width: 100%; padding: 15px; background-color: var(--verde); color: white; border: none; border-radius: 10px; font-weight: bold; font-size: 16px; cursor: pointer; margin-top: 15px; display: none; }
         
         footer { text-align: center; padding: 20px; font-size: 12px; color: #888; }
@@ -57,7 +47,7 @@
     <div class="info-header">📍 Frente al estadio de fútbol, Caucasia | 📞 3117700431</div>
     <header><img src="ASADOS-DELYPOLLOS.PNG" alt="DelyPollos" class="logo"></header>
 
-    <div class="categories" id="category-tabs">
+    <div class="categories">
         <button class="cat-btn active" onclick="cambiarCategoria('BROASTER', this)">Broaster</button>
         <button class="cat-btn inactive" onclick="cambiarCategoria('ASADO', this)">Asado</button>
         <button class="cat-btn inactive">Bandejas</button>
@@ -69,12 +59,26 @@
     <div id="categoria-actual" style="padding: 10px 15px; font-weight: bold; text-transform: uppercase;">CATEGORÍA: BROASTER</div>
     <div class="products-grid" id="menu-container"></div>
 
-    <div class="cliente-data">
-        <strong style="font-size: 14px;">DATOS DE ENTREGA</strong>
-        <div id="form-cliente" style="margin-top: 10px;">
+    <div class="form-section">
+        <strong style="font-size: 14px;">DATOS DE ENTREGA Y PAGO</strong>
+        <div style="margin-top: 10px;">
             <div class="input-group"><label>Nombre:</label><input type="text" id="nombre"></div>
             <div class="input-group"><label>Dirección:</label><input type="text" id="direccion"></div>
             <div class="input-group"><label>Celular:</label><input type="tel" id="tel-cliente"></div>
+            
+            <div class="input-group">
+                <label>Forma de Pago:</label>
+                <select id="forma-pago">
+                    <option value="Efectivo">Efectivo</option>
+                    <option value="Transferencia Bancaria">Transferencia Bancaria</option>
+                    <option value="Datáfono">Datáfono</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label>OBS (Observaciones):</label>
+                <textarea id="observaciones" rows="2" placeholder="Ej: Sin cebolla, no demoren, traer cambio de $50k..."></textarea>
+            </div>
         </div>
     </div>
 
@@ -82,8 +86,8 @@
         <strong style="font-size: 14px;">RESUMEN DE PEDIDO</strong>
         <div id="cart-list" style="margin-top: 10px;"></div>
         <div id="resumen-valores" class="total-box" style="display: none;">
-            <div style="display: flex; justify-content: space-between; font-weight: bold; font-size: 18px; color: var(--rojo);">
-                <span>TOTAL:</span> <span id="total-val">$0</span>
+            <div style="font-weight: bold; font-size: 18px; color: var(--rojo);">
+                TOTAL: <span id="total-val">$0</span>
             </div>
             <button id="send-btn" class="btn-whatsapp" onclick="enviarPedido()">PEDIR POR WHATSAPP</button>
         </div>
@@ -122,24 +126,18 @@
             document.getElementById('tel-cliente').value = localStorage.getItem('tel-cliente');
         }
         renderMenu();
-        actualizarUI();
     };
 
     function cambiarCategoria(cat, btn) {
         catActual = cat;
-        document.querySelectorAll('.cat-btn').forEach(b => {
-            b.classList.remove('active');
-            b.classList.add('inactive');
-        });
-        btn.classList.add('active');
-        btn.classList.remove('inactive');
+        document.querySelectorAll('.cat-btn').forEach(b => { b.classList.replace('active', 'inactive'); });
+        btn.classList.replace('inactive', 'active');
         document.getElementById('categoria-actual').innerText = `CATEGORÍA: ${cat}`;
         renderMenu();
     }
 
     function renderMenu() {
-        const container = document.getElementById('menu-container');
-        container.innerHTML = menuData[catActual].map(p => `
+        document.getElementById('menu-container').innerHTML = menuData[catActual].map(p => `
             <div class="product-card" onclick="agregarAlCarrito(${p.id})">
                 <div class="product-name">${p.nombre}</div>
                 <span class="product-price">$${p.precio.toLocaleString()}</span>
@@ -148,13 +146,11 @@
     }
 
     function agregarAlCarrito(id) {
-        // Buscar en todas las categorías
         let prod;
         for (let cat in menuData) {
             const found = menuData[cat].find(p => p.id === id);
             if (found) { prod = found; break; }
         }
-
         const item = carrito.find(i => i.id === id);
         if (item) item.cantidad++;
         else carrito.push({ ...prod, cantidad: 1 });
@@ -173,26 +169,19 @@
     function actualizarUI() {
         const lista = document.getElementById('cart-list');
         const resumen = document.getElementById('resumen-valores');
-        const btn = document.getElementById('send-btn');
-        
         if (carrito.length === 0) {
-            lista.innerHTML = '<p style="color: #999;">Selecciona productos para tu pedido.</p>';
+            lista.innerHTML = '<p style="color: #999;">Selecciona productos.</p>';
             resumen.style.display = 'none';
             return;
         }
-
         resumen.style.display = 'block';
-        btn.style.display = 'block';
-        
+        document.getElementById('send-btn').style.display = 'block';
         let total = 0;
         lista.innerHTML = carrito.map(item => {
             total += item.precio * item.cantidad;
             return `
                 <div class="cart-item">
-                    <div class="item-info">
-                        <div>${item.nombre}</div>
-                        <span>$${item.precio.toLocaleString()} c/u</span>
-                    </div>
+                    <div><strong>${item.nombre}</strong><br><small>$${item.precio.toLocaleString()} c/u</small></div>
                     <div class="qty-controls">
                         <button class="qty-btn" onclick="modQty(${item.id}, -1)">-</button>
                         <div class="qty-box">${item.cantidad}</div>
@@ -200,7 +189,6 @@
                     </div>
                 </div>`;
         }).join('');
-
         document.getElementById('total-val').innerText = `$${total.toLocaleString()}`;
     }
 
@@ -208,30 +196,29 @@
         const n = document.getElementById('nombre').value;
         const d = document.getElementById('direccion').value;
         const t = document.getElementById('tel-cliente').value;
+        const pago = document.getElementById('forma-pago').value;
+        const obs = document.getElementById('observaciones').value;
 
-        if(!n || !d || !t) return alert("Por favor completa tus datos.");
+        if(!n || !d || !t) return alert("Completa tus datos.");
 
         localStorage.setItem('nombre', n);
         localStorage.setItem('direccion', d);
         localStorage.setItem('tel-cliente', t);
 
-        let msg = `*ASADOS DELYPOLLOS*\n`;
-        msg += `Frente al Estadio | 3117700431\n`;
+        let msg = `*ASADOS DELYPOLLOS*\nFrente al Estadio | 3117700431\n`;
         msg += `--------------------------------\n`;
         msg += `*CLIENTE:* ${n}\n*TEL:* ${t}\n*DIR:* ${d}\n`;
-        msg += `--------------------------------\n`;
+        msg += `*PAGO:* ${pago}\n`;
+        if(obs) msg += `*OBS:* ${obs}\n`;
+        msg += `--------------------------------\n*DETALLE:*\n`;
         
         let total = 0;
         carrito.forEach(i => {
-            let sub = i.precio * i.cantidad;
-            total += sub;
-            msg += `${i.cantidad}x ${i.nombre}\n`;
-            msg += `   Unit: $${i.precio.toLocaleString()} - Sub: $${sub.toLocaleString()}\n`;
+            total += (i.precio * i.cantidad);
+            msg += `${i.cantidad}x ${i.nombre} ($${(i.precio*i.cantidad).toLocaleString()})\n`;
         });
 
-        msg += `--------------------------------\n`;
-        msg += `*TOTAL A PAGAR: $${total.toLocaleString()}*`;
-
+        msg += `--------------------------------\n*TOTAL: $${total.toLocaleString()}*`;
         window.open(`https://wa.me/573117700431?text=${encodeURIComponent(msg)}`);
     }
 </script>
