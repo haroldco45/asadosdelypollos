@@ -24,8 +24,8 @@
         /* Productos */
         .products-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; padding: 0 15px; }
         .product-card { background-color: var(--rojo); color: white; padding: 12px; border-radius: 10px; text-align: center; cursor: pointer; }
-        .product-name { font-size: 11px; font-weight: bold; height: 30px; display: flex; align-items: center; justify-content: center; }
-        .product-price { font-size: 15px; display: block; margin-top: 5px; font-weight: bold; }
+        .product-name { font-size: 10px; font-weight: bold; height: 32px; display: flex; align-items: center; justify-content: center; line-height: 1.1; }
+        .product-price { font-size: 14px; display: block; margin-top: 5px; font-weight: bold; }
 
         /* Formularios */
         .form-section { padding: 15px; background: #fff; border-top: 5px solid var(--gris-fondo); }
@@ -36,7 +36,6 @@
         /* Carrito / Factura */
         .cart-section { padding: 15px; background: #fff; border-top: 5px solid var(--gris-fondo); }
         .cart-item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; border-bottom: 1px dashed #eee; padding-bottom: 8px; }
-        .item-val-unit { font-size: 11px; color: #666; }
         
         .qty-controls { display: flex; align-items: center; gap: 8px; }
         .qty-box { width: 30px; text-align: center; border: 1px solid #ccc; border-radius: 4px; font-weight: bold; font-size: 14px; }
@@ -55,9 +54,9 @@
     <header><img src="ASADOS-DELYPOLLOS.PNG" alt="DelyPollos" class="logo"></header>
 
     <div class="categories">
-        <button class="cat-btn active" onclick="cambiarCategoria('BROASTER', this)">Broaster</button>
-        <button class="cat-btn inactive" onclick="cambiarCategoria('ASADO', this)">Asado</button>
-        <button class="cat-btn inactive">Bandejas</button>
+        <button id="btn-BROASTER" class="cat-btn active" onclick="cambiarCategoria('BROASTER')">Broaster</button>
+        <button id="btn-ASADO" class="cat-btn inactive" onclick="cambiarCategoria('ASADO')">Asado</button>
+        <button id="btn-BANDEJAS" class="cat-btn inactive" onclick="cambiarCategoria('BANDEJAS')">Bandejas</button>
         <button class="cat-btn inactive">Bebidas</button>
         <button class="cat-btn inactive">Sopas</button>
         <button class="cat-btn inactive">Postres</button>
@@ -91,7 +90,6 @@
         <strong style="font-size: 14px;">RESUMEN DE FACTURA</strong>
         <div id="cart-list" style="margin-top: 10px;"></div>
         <div id="resumen-valores" class="total-box" style="display: none;">
-            <div style="font-size: 14px; margin-bottom: 5px;">Subtotal: <span id="subtotal-val">$0</span></div>
             <div style="font-weight: bold; font-size: 20px; color: var(--rojo);">
                 TOTAL A PAGAR: <span id="total-val">$0</span>
             </div>
@@ -122,6 +120,28 @@
             { id: 10, nombre: "1/2 POLLO ASADO", precio: 24000 },
             { id: 11, nombre: "1/4 PERNIL ASADO", precio: 13000 },
             { id: 12, nombre: "1/4 PECHUGA ASADO", precio: 15000 }
+        ],
+        'BANDEJAS': [
+            { id: 13, nombre: "BANDEJA RES", precio: 20000 },
+            { id: 14, nombre: "BANDEJA CERDO", precio: 20000 },
+            { id: 15, nombre: "BANDEJA HIGADO", precio: 20000 },
+            { id: 16, nombre: "BANDEJA CHICHARRON", precio: 22000 },
+            { id: 17, nombre: "BANDEJA CARNE MOLIDA", precio: 20000 },
+            { id: 18, nombre: "BANDEJA PECHUGA PLANCHA", precio: 22000 },
+            { id: 19, nombre: "BANDEJA CHULETA DE CERDO", precio: 22000 },
+            { id: 20, nombre: "BANDEJA COSTILLA BBQ", precio: 22000 },
+            { id: 21, nombre: "BANDEJA CARNE DESMECHADA", precio: 20000 },
+            { id: 22, nombre: "BANDEJA POLLO DESMECHADO", precio: 20000 },
+            { id: 23, nombre: "BANDEJA TILAPIA", precio: 30000 },
+            { id: 24, nombre: "BANDEJA CACHAMA", precio: 25000 },
+            { id: 25, nombre: "BANDEJA BOCACHICO SUDADO", precio: 25000 },
+            { id: 26, nombre: "BANDEJA BOCACHICO FRITO", precio: 25000 },
+            { id: 27, nombre: "BANDEJA POLLO BROASTER 1P", precio: 20000 },
+            { id: 28, nombre: "BANDEJA POLLO BROASTER 2P", precio: 25000 },
+            { id: 29, nombre: "BANDEJA POLLO ASADO", precio: 25000 },
+            { id: 30, nombre: "SOPA DE RES", precio: 0 },
+            { id: 31, nombre: "SOPA POLLO", precio: 0 },
+            { id: 32, nombre: "SOPA DE PASTAS", precio: 0 }
         ]
     };
 
@@ -134,10 +154,10 @@
         renderMenu();
     };
 
-    function cambiarCategoria(cat, btn) {
+    function cambiarCategoria(cat) {
         catActual = cat;
         document.querySelectorAll('.cat-btn').forEach(b => b.classList.replace('active', 'inactive'));
-        btn.classList.replace('inactive', 'active');
+        document.getElementById('btn-' + cat).classList.replace('inactive', 'active');
         document.getElementById('categoria-actual').innerText = `Categoría: ${cat}`;
         renderMenu();
     }
@@ -184,14 +204,10 @@
         document.getElementById('send-btn').style.display = 'block';
         let total = 0;
         lista.innerHTML = carrito.map(item => {
-            const sub = item.precio * item.cantidad;
-            total += sub;
+            total += (item.precio * item.cantidad);
             return `
                 <div class="cart-item">
-                    <div>
-                        <strong>${item.nombre}</strong><br>
-                        <span class="item-val-unit">$${item.precio.toLocaleString()} c/u</span>
-                    </div>
+                    <div><strong>${item.nombre}</strong><br><small>$${item.precio.toLocaleString()} c/u</small></div>
                     <div class="qty-controls">
                         <button class="qty-btn" onclick="modQty(${item.id}, -1)">-</button>
                         <div class="qty-box">${item.cantidad}</div>
@@ -199,7 +215,6 @@
                     </div>
                 </div>`;
         }).join('');
-        document.getElementById('subtotal-val').innerText = `$${total.toLocaleString()}`;
         document.getElementById('total-val').innerText = `$${total.toLocaleString()}`;
     }
 
@@ -221,21 +236,17 @@
         msg += `*CLIENTE:* ${n}\n*TEL:* ${t}\n*DIR:* ${d}\n`;
         msg += `*PAGO:* ${pago}\n`;
         if(obs) msg += `*OBS:* ${obs}\n`;
-        msg += `--------------------------------\n`;
-        msg += `*DETALLE DE FACTURA:*\n`;
+        msg += `--------------------------------\n*DETALLE DE FACTURA:*\n`;
         
         let total = 0;
         carrito.forEach(i => {
             let sub = i.precio * i.cantidad;
             total += sub;
-            msg += `${i.cantidad}x ${i.nombre}\n`;
-            msg += `   ($${i.precio.toLocaleString()} c/u) = $${sub.toLocaleString()}\n`;
+            msg += `${i.cantidad}x ${i.nombre}\n   ($${i.precio.toLocaleString()} c/u) = $${sub.toLocaleString()}\n`;
         });
 
-        msg += `--------------------------------\n`;
-        msg += `*TOTAL A PAGAR: $${total.toLocaleString()}*\n\n`;
-        msg += `¡Muchas gracias por su compra!\n`;
-        msg += `_App desarrollada por VIBRAS POSITIVAS_`;
+        msg += `--------------------------------\n*TOTAL A PAGAR: $${total.toLocaleString()}*\n\n`;
+        msg += `¡Muchas gracias por su compra!\n_App desarrollada por VIBRAS POSITIVAS_`;
 
         window.open(`https://wa.me/573117700431?text=${encodeURIComponent(msg)}`);
     }
