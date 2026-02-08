@@ -23,7 +23,8 @@
 
         /* Productos */
         .products-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; padding: 0 15px; }
-        .product-card { background-color: var(--rojo); color: white; padding: 12px; border-radius: 10px; text-align: center; cursor: pointer; }
+        .product-card { background-color: var(--rojo); color: white; padding: 12px; border-radius: 10px; text-align: center; cursor: pointer; transition: 0.2s; }
+        .product-card:active { transform: scale(0.98); }
         .product-name { font-size: 10px; font-weight: bold; height: 32px; display: flex; align-items: center; justify-content: center; line-height: 1.1; }
         .product-price { font-size: 14px; display: block; margin-top: 5px; font-weight: bold; }
 
@@ -31,7 +32,7 @@
         .form-section { padding: 15px; background: #fff; border-top: 5px solid var(--gris-fondo); }
         .input-group { margin-bottom: 12px; }
         .input-group label { display: block; font-size: 12px; margin-bottom: 4px; font-weight: bold; }
-        .input-group input, .input-group select, .input-group textarea { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; }
+        .input-group input, .input-group select, .input-group textarea { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; font-family: inherit; }
         
         /* Carrito / Factura */
         .cart-section { padding: 15px; background: #fff; border-top: 5px solid var(--gris-fondo); }
@@ -57,9 +58,9 @@
         <button id="btn-BROASTER" class="cat-btn active" onclick="cambiarCategoria('BROASTER')">Broaster</button>
         <button id="btn-ASADO" class="cat-btn inactive" onclick="cambiarCategoria('ASADO')">Asado</button>
         <button id="btn-BANDEJAS" class="cat-btn inactive" onclick="cambiarCategoria('BANDEJAS')">Bandejas</button>
-        <button class="cat-btn inactive">Bebidas</button>
-        <button class="cat-btn inactive">Sopas</button>
-        <button class="cat-btn inactive">Postres</button>
+        <button id="btn-BEBIDAS" class="cat-btn inactive" onclick="cambiarCategoria('BEBIDAS')">Bebidas</button>
+        <button id="btn-SOPAS" class="cat-btn inactive" onclick="cambiarCategoria('SOPAS')">Sopas</button>
+        <button id="btn-POSTRES" class="cat-btn inactive" onclick="cambiarCategoria('POSTRES')">Postres</button>
     </div>
 
     <div id="categoria-actual" style="padding: 10px 15px; font-weight: bold; text-transform: uppercase; color: #444;">Categoría: Broaster</div>
@@ -81,7 +82,7 @@
             </div>
             <div class="input-group">
                 <label>Observaciones (OBS):</label>
-                <textarea id="observaciones" rows="2" placeholder="Ej: Sin cebolla, traer cambio de $50.000..."></textarea>
+                <textarea id="observaciones" rows="2" placeholder="Ej: Traer gaseosa bien fría, cambio de $50k..."></textarea>
             </div>
         </div>
     </div>
@@ -142,28 +143,50 @@
             { id: 30, nombre: "SOPA DE RES", precio: 0 },
             { id: 31, nombre: "SOPA POLLO", precio: 0 },
             { id: 32, nombre: "SOPA DE PASTAS", precio: 0 }
-        ]
+        ],
+        'BEBIDAS': [
+            { id: 33, nombre: "COCACOLA 1.5", precio: 10000 },
+            { id: 34, nombre: "GASEOSA X400", precio: 5000 },
+            { id: 35, nombre: "JUGO HIT", precio: 5000 },
+            { id: 36, nombre: "BOTELLA AGUA", precio: 3000 },
+            { id: 37, nombre: "GATORADE", precio: 7000 },
+            { id: 38, nombre: "SODA", precio: 4000 },
+            { id: 39, nombre: "CERVEZA", precio: 5000 },
+            { id: 40, nombre: "ENERGIZANTE", precio: 3000 },
+            { id: 41, nombre: "AGUA PEQUEÑA", precio: 1500 }
+        ],
+        'SOPAS': [], // Listas para cuando pases la foto
+        'POSTRES': []
     };
 
     let carrito = [];
     let catActual = 'BROASTER';
 
     window.onload = () => {
-        const saved = ['nombre', 'direccion', 'tel-cliente'];
-        saved.forEach(f => { if(localStorage.getItem(f)) document.getElementById(f).value = localStorage.getItem(f); });
+        const fields = ['nombre', 'direccion', 'tel-cliente'];
+        fields.forEach(f => { if(localStorage.getItem(f)) document.getElementById(f).value = localStorage.getItem(f); });
         renderMenu();
     };
 
     function cambiarCategoria(cat) {
         catActual = cat;
+        // Quitar active de todos los botones
         document.querySelectorAll('.cat-btn').forEach(b => b.classList.replace('active', 'inactive'));
-        document.getElementById('btn-' + cat).classList.replace('inactive', 'active');
+        // Poner active al seleccionado
+        const btn = document.getElementById('btn-' + cat);
+        if(btn) btn.classList.replace('inactive', 'active');
+        
         document.getElementById('categoria-actual').innerText = `Categoría: ${cat}`;
         renderMenu();
     }
 
     function renderMenu() {
-        document.getElementById('menu-container').innerHTML = menuData[catActual].map(p => `
+        const container = document.getElementById('menu-container');
+        if (menuData[catActual].length === 0) {
+            container.innerHTML = '<p style="padding: 20px; color: #999;">Próximamente...</p>';
+            return;
+        }
+        container.innerHTML = menuData[catActual].map(p => `
             <div class="product-card" onclick="agregarAlCarrito(${p.id})">
                 <div class="product-name">${p.nombre}</div>
                 <span class="product-price">$${p.precio.toLocaleString()}</span>
@@ -196,7 +219,7 @@
         const lista = document.getElementById('cart-list');
         const resumen = document.getElementById('resumen-valores');
         if (carrito.length === 0) {
-            lista.innerHTML = '<p style="color: #999; font-size: 13px;">El carrito está vacío.</p>';
+            lista.innerHTML = '<p style="color: #999; font-size: 13px;">Selecciona productos para tu pedido.</p>';
             resumen.style.display = 'none';
             return;
         }
@@ -204,7 +227,8 @@
         document.getElementById('send-btn').style.display = 'block';
         let total = 0;
         lista.innerHTML = carrito.map(item => {
-            total += (item.precio * item.cantidad);
+            let sub = item.precio * item.cantidad;
+            total += sub;
             return `
                 <div class="cart-item">
                     <div><strong>${item.nombre}</strong><br><small>$${item.precio.toLocaleString()} c/u</small></div>
@@ -225,7 +249,7 @@
         const pago = document.getElementById('forma-pago').value;
         const obs = document.getElementById('observaciones').value;
 
-        if(!n || !d || !t) return alert("Por favor, complete sus datos de entrega.");
+        if(!n || !d || !t) return alert("Por favor, completa tus datos de entrega.");
 
         localStorage.setItem('nombre', n);
         localStorage.setItem('direccion', d);
