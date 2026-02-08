@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Asados DelyPollos - App</title>
+    <title>Asados DelyPollos - Factura Digital</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root { --rojo: #d32f2f; --verde: #25d366; --verde-boton: #4caf50; --gris-fondo: #f4f4f4; }
@@ -13,8 +13,8 @@
         /* Bloqueo de Suscripción */
         #bloqueo-sub {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(211, 47, 47, 0.95); z-index: 9999; color: white;
-            text-align: center; padding-top: 100px; font-weight: bold;
+            background: rgba(211, 47, 47, 0.98); z-index: 9999; color: white;
+            text-align: center; padding: 100px 20px; font-weight: bold;
         }
 
         .info-header { background: #fff; padding: 10px; text-align: center; font-size: 11px; border-bottom: 1px solid #ddd; }
@@ -51,8 +51,9 @@
 <body>
 
 <div id="bloqueo-sub">
-    <h1>SUSCRIPCIÓN VENCIDA</h1>
-    <p>Por favor contacte al desarrollador para activar la aplicación.</p>
+    <h1>⚠️ APLICACIÓN SUSPENDIDA</h1>
+    <p>La suscripción de este servicio ha vencido.</p>
+    <p>Por favor, contacte al desarrollador para reactivar el menú y los pedidos.</p>
 </div>
 
 <div class="app-container" id="main-app">
@@ -106,7 +107,6 @@
 
 <script>
     // --- CONTROL DE SUSCRIPCIÓN ---
-    // Cambia esta fecha (Formato: AÑO-MES-DÍA) para renovar la suscripción
     const FECHA_VENCIMIENTO = "2026-03-08"; 
 
     function verificarSuscripcion() {
@@ -114,7 +114,7 @@
         const vencimiento = new Date(FECHA_VENCIMIENTO);
         if (hoy > vencimiento) {
             document.getElementById('bloqueo-sub').style.display = 'block';
-            document.getElementById('main-app').style.opacity = '0.1';
+            document.getElementById('main-app').style.opacity = '0.05';
             document.getElementById('main-app').style.pointerEvents = 'none';
         }
     }
